@@ -1,35 +1,33 @@
 package com.mti.web_jpa_security_mysql.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "books")
 public class Book {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Book Name is required")
     private String bookName;
 
-    @NotBlank
+    @NotBlank(message = "Author name is required")
     private String authorName;
 
-    @NotBlank
+    @NotBlank(message = "ISBN is needed")
+    @Size(min = 4, max = 10, message = "please use 4 to 10 chars")
+    @Column(updatable = false, unique = true)
     private String isbn;
 
     public Book() {
     }
 
     public Book(Long id, @NotBlank String bookName, @NotBlank String authorName, @NotBlank String isbn) {
-
         super();
         this.id = id;
-
         this.bookName = bookName;
         this.authorName = authorName;
         this.isbn = isbn;
