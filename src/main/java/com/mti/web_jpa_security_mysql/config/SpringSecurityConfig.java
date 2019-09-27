@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //create 2 user for demo
+    //create 2 user for demo okay
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
